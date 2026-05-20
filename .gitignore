@@ -1,0 +1,12 @@
+.DS_Store
+*.log
+
+# Local editor/session state
+Session.vim
+Sessionx.vim
+.netrwhist
+
+# Neovim runtime/cache artifacts should live outside this repo.
+nvim/.config/nvim/.cache/
+nvim/.config/nvim/.local/
+nvim/.config/nvim/plugin/packer_compiled.lua

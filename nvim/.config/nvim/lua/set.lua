@@ -1,0 +1,2 @@
+-- Core config has moved to options.lua, keymaps.lua, autocmds.lua,
+-- diagnostics.lua, and ui.lua.
