@@ -31,6 +31,7 @@ Plugin specs live in `.config/nvim/lua/plugins/`.
 | `kylechui/nvim-surround` | Add/change/delete surrounding pairs |
 | `folke/todo-comments.nvim` | Highlight and search TODO-style comments |
 | `github/copilot.vim` | GitHub Copilot suggestions |
+| `pwntester/octo.nvim` | GitHub issues, pull requests, discussions, and notifications |
 | `echasnovski/mini.nvim` | Mini statusline |
 | `jpalardy/vim-slime` | Send code to tmux |
 | `lervag/vimtex` | LaTeX editing |
@@ -147,6 +148,17 @@ These are available after an LSP server attaches to the buffer.
 | --- | --- | --- |
 | Normal | `<leader>ff` | Open TODO quickfix list |
 | Normal | `<leader>ft` | Search TODOs with Telescope |
+
+### GitHub
+
+| Mode | Key | Action |
+| --- | --- | --- |
+| Normal | `<leader>oi` | List GitHub issues |
+| Normal | `<leader>op` | List GitHub pull requests |
+| Normal | `<leader>od` | List GitHub discussions |
+| Normal | `<leader>on` | List GitHub notifications |
+| Normal | `<leader>oc` | List pending review comments |
+| Normal | `<leader>os` | Search GitHub |
 
 ### Plugin Defaults Worth Remembering
 
