@@ -153,6 +153,7 @@ These are available after an LSP server attaches to the buffer.
 
 | Mode | Key | Action |
 | --- | --- | --- |
+| Normal | `<leader>oo` | List Octo actions |
 | Normal | `<leader>oi` | List GitHub issues |
 | Normal | `<leader>op` | List GitHub pull requests |
 | Normal | `<leader>od` | List GitHub discussions |
