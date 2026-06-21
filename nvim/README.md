@@ -157,6 +157,7 @@ These are available after an LSP server attaches to the buffer.
 | Normal | `<leader>op` | List GitHub pull requests |
 | Normal | `<leader>od` | List GitHub discussions |
 | Normal | `<leader>on` | List GitHub notifications |
+| Normal | `<leader>oc` | List pending review comments |
 | Normal | `<leader>os` | Search GitHub |
 
 ### Plugin Defaults Worth Remembering

@@ -11,6 +11,7 @@ return {
 		{ "<leader>op", "<cmd>Octo pr list<cr>", desc = "List GitHub pull requests" },
 		{ "<leader>od", "<cmd>Octo discussion list<cr>", desc = "List GitHub discussions" },
 		{ "<leader>on", "<cmd>Octo notification list<cr>", desc = "List GitHub notifications" },
+		{ "<leader>oc", "<cmd>Octo review comments<cr>", desc = "List pending review comments" },
 		{
 			"<leader>os",
 			function()
