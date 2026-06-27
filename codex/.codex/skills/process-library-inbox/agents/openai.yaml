@@ -1,0 +1,4 @@
+interface:
+  display_name: "Process Library Inbox"
+  short_description: "Classify and organize files from the library inbox"
+  default_prompt: "Use $process-library-inbox to process all files in my library inbox."
