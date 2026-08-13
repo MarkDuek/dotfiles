@@ -35,6 +35,7 @@ Plugin specs live in `.config/nvim/lua/plugins/`.
 | `echasnovski/mini.nvim` | Mini statusline |
 | `jpalardy/vim-slime` | Send code to tmux |
 | `lervag/vimtex` | LaTeX editing |
+| `obsidian-nvim/obsidian.nvim` | Obsidian note management for the `notes` vault |
 | `sphamba/smear-cursor.nvim` | Cursor animation, currently disabled |
 | `catppuccin/nvim` | Theme |
 | `rebelot/kanagawa.nvim` | Theme |
@@ -160,6 +161,19 @@ These are available after an LSP server attaches to the buffer.
 | Normal | `<leader>on` | List GitHub notifications |
 | Normal | `<leader>oc` | List pending review comments |
 | Normal | `<leader>os` | Search GitHub |
+
+### Obsidian
+
+These load Obsidian.nvim when used. The configured vault is
+`/home/mark/Resources/mark-notes/repo`.
+
+| Mode | Key | Action |
+| --- | --- | --- |
+| Normal | `<leader>On` | Create an Obsidian note |
+| Normal | `<leader>Oo` | Open an Obsidian note |
+| Normal | `<leader>Os` | Search Obsidian notes |
+| Normal | `<leader>Ot` | Open today's daily note |
+| Normal | `<leader>Ob` | Show backlinks for the current note |
 
 ### Plugin Defaults Worth Remembering
 
