@@ -5,6 +5,7 @@ vim.opt.nu = true
 vim.opt.relativenumber = true
 vim.opt.ignorecase = true
 vim.opt.smartcase = true
+vim.opt.conceallevel = 2
 
 vim.opt.scrolloff = 8
 vim.opt.sidescrolloff = 8
