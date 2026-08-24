@@ -10,3 +10,6 @@ Sessionx.vim
 nvim/.config/nvim/.cache/
 nvim/.config/nvim/.local/
 nvim/.config/nvim/plugin/packer_compiled.lua
+
+# Local GitHub Copilot authentication and SQLite runtime state.
+nvim/.config/github-copilot/

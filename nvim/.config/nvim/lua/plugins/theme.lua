@@ -4,7 +4,7 @@ return {
         config = function()
             require("catppuccin").setup({
                 flavour = "mocha",
-                transparent_background = true,
+                -- transparent_background = true,
             })
         end
 	},
@@ -16,7 +16,7 @@ return {
         config = function()
             require("vague").setup({
                 -- optional configuration here
-                transparent = true,
+                -- transparent = true,
                 style = {
                     -- "none" is the same thing as default. But "italic" and "bold" are also valid options
                     boolean = "none",

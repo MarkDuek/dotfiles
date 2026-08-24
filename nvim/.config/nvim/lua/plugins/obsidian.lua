@@ -6,11 +6,11 @@ return {
         "nvim-lua/plenary.nvim",
     },
     keys = {
-        { "<leader>On", "<cmd>Obsidian new<cr>", desc = "Obsidian new note" },
-        { "<leader>Oo", "<cmd>Obsidian quick_switch<cr>", desc = "Obsidian open note" },
-        { "<leader>Os", "<cmd>Obsidian search<cr>", desc = "Obsidian search notes" },
-        { "<leader>Ot", "<cmd>Obsidian today<cr>", desc = "Obsidian today's note" },
-        { "<leader>Ob", "<cmd>Obsidian backlinks<cr>", desc = "Obsidian backlinks" },
+        { "<leader>on", "<cmd>Obsidian new<cr>", desc = "Obsidian new note" },
+        { "<leader>oo", "<cmd>Obsidian quick_switch<cr>", desc = "Obsidian open note" },
+        { "<leader>os", "<cmd>Obsidian search<cr>", desc = "Obsidian search notes" },
+        { "<leader>ot", "<cmd>Obsidian today<cr>", desc = "Obsidian today's note" },
+        { "<leader>ob", "<cmd>Obsidian backlinks<cr>", desc = "Obsidian backlinks" },
     },
     opts = {
         -- Commands use the v3+ subcommand syntax: :Obsidian <command>.

@@ -1,6 +1,7 @@
 vim.keymap.set("n", "<leader>pv", vim.cmd.Ex, { desc = "Open file explorer" })
 
 vim.keymap.set("n", "<leader>w", "<cmd>w<cr>", { desc = "Write buffer" })
+vim.keymap.set("n", "<leader>r", "<cmd>e!<cr>", { desc = "Reload buffer" })
 vim.keymap.set("n", "<leader>qq", "<cmd>q<cr>", { desc = "Quit" })
 
 vim.keymap.set("n", "<leader>n", "<cmd>bn<cr>", { desc = "Next buffer" })
@@ -15,6 +16,7 @@ vim.keymap.set({ "n", "v" }, "<leader>y", [["+y]], { desc = "Yank to clipboard" 
 vim.keymap.set("n", "<leader>Y", [["+Y]], { desc = "Yank line to clipboard" })
 
 vim.keymap.set("n", "<leader>h", "<cmd>noh<cr>", { desc = "Clear search highlight" })
+vim.keymap.set("n", "<C-w>;", "<C-w>p", { desc = "Last pane" })
 
 vim.keymap.set("n", "]g", vim.diagnostic.goto_next, { desc = "Next diagnostic" })
 vim.keymap.set("n", "[g", vim.diagnostic.goto_prev, { desc = "Previous diagnostic" })

@@ -26,7 +26,7 @@ The numbered layout below is authoritative. Live filesystem structure and
 | Book | `B####` | `02-books` | `02-books` |
 | Standalone handwritten note | `N####` | `03-handwritten-notes` | `03-handwritten-notes` |
 | Course note or lecture | `C####` | `04-course-notes` | `04-course-notes` |
-| Standalone slide deck | `N####` | `05-slides` | `05-slides` |
+| Standalone slide deck | `S####` | `05-slides` | `05-slides` |
 | Miscellaneous resource | `N####` | `99-misc` | `99-misc` |
 | Meeting note | `M####` | Follow live convention | Follow live convention |
 
@@ -44,7 +44,7 @@ IDs are global within their prefix and never reused.
 - Standalone handwriting with independent knowledge value: create `N####` with
   type `handwritten-note`.
 - Slides tied to a course note or other resource: add a `slides` variant to the
-  parent. A reusable standalone deck receives `N####` with type `slides`.
+  parent. A reusable standalone deck receives `S####` with type `slides`.
 - Supplements, datasets, images, answer keys, and alternate formats associated
   with an existing entity stay under that parent.
 - Administrative or project-only files do not automatically belong in the
@@ -159,7 +159,7 @@ files:
 related: []
 ```
 
-### Standalone Handwriting, Slides, or Miscellaneous
+### Standalone Handwriting or Miscellaneous
 
 Required core:
 
@@ -175,8 +175,23 @@ files:
 related: []
 ```
 
-Set `type` and collection path to `slides`/`05-slides` or
-`misc`/`99-misc` as appropriate.
+Set `type` and collection path to `misc`/`99-misc` as appropriate.
+
+### Standalone Slides
+
+Required core:
+
+```yaml
+id: S0000
+type: slides
+title: "Title"
+date:
+status: raw
+topics: []
+files:
+  canonical: 05-slides/S0000/S0000.pdf
+related: []
+```
 
 ## Paper Indexes
 
