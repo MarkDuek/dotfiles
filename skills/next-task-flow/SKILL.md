@@ -25,3 +25,14 @@ Use this skill when the user has already created a task and wants to understand 
     Create a new file at /notes/tasks/ and notes/results/
     Also add them to the project log (/notes/01-project-log.md) to keep track of the progress and completion of tasks.
 
+4. Clear the next-task.md file.
+
+    After documenting the new task and its result, clear the contents of /notes/next-task.md to indicate that the task has been completed and is no longer pending.
+
+    Insert the following template:
+
+'''
+    # Next Task
+    
+    Place next task here. This file will be cleared after the task is completed and documented.
+'''
