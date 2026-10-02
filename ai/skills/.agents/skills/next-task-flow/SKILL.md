@@ -1,38 +1,40 @@
 ---
 name: next-task-flow
-description: 
-  A skill that helps you complete your next task by providing a series of steps and guidance.
+description: Complete a project's notes/next-task.md task, verify the result, and record it in the project notes.
 ---
 
 # Next Task Flow
 
-Use this skill when the user has already created a task and wants to understand the next steps to complete it.
+Use this skill when the user has written a next task in the current project's
+`notes/next-task.md` and asks to work through it. If the user asks only for a plan,
+provide the plan without changing task files.
 
 ## Workflow
 
-1. Read the AGENT.md files to understand the context of the task and the relevant files.
+1. Identify the project root from the current working directory and the user's
+   context. Read applicable `AGENTS.md` files in ancestors and directories being
+   worked on. Honor a legacy `AGENT.md` if the project uses one. Ask if the
+   intended project is ambiguous.
+2. Read `notes/next-task.md` relative to that project root, not the filesystem
+   root or the global notes vault. If missing, empty, or only a template, report
+   that there is no pending task and stop. Inspect Git status and preserve
+   unrelated work.
+3. Explain the intended work, implement the requested task, and run relevant
+   checks. If blocked or incomplete, leave the next-task file intact and report
+   what remains.
+4. Document the task in `notes/tasks/` and its outcome and checks in
+   `notes/results/`. Follow existing filename conventions and use unique names;
+   do not overwrite existing records. Append links and a short summary to
+   `notes/01-project-log.md`, preserving existing entries.
+5. Only after implementation, verification, and documentation succeed, replace
+   the completed next-task content with the template below. Re-read the file
+   first; if it changed during the run, preserve the new task instead of clearing
+   it. Do not commit or push unless the user asks.
 
-    Check the current directory and all its child directories for AGENT.md files.
-    If multiple files are found, read them all to understand the context of the task and the relevant files.
+```markdown
+# Next Task
 
-2. Read the next task.
+Place next task here. This file will be cleared after the task is completed and documented.
+```
 
-    Read the new task description at /notes/next-task.md.
-    This file contains the next task that needs to be completed, along with any relevant information or instructions.
-
-3. Document the new task and its result.
-
-    Create a new file at /notes/tasks/ and notes/results/
-    Also add them to the project log (/notes/01-project-log.md) to keep track of the progress and completion of tasks.
-
-4. Clear the next-task.md file.
-
-    After documenting the new task and its result, clear the contents of /notes/next-task.md to indicate that the task has been completed and is no longer pending.
-
-    Insert the following template:
-
-'''
-    # Next Task
-    
-    Place next task here. This file will be cleared after the task is completed and documented.
-'''
+Report the result, checks, documentation paths, and any remaining work.

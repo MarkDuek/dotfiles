@@ -1,4 +1,4 @@
 interface:
   display_name: "Next Task Flow"
-  short_description: "A flow that helps you complete your next task by providing a series of steps and guidance."
-  default_prompt: "Use $next-task-flow to understand the next task and document the steps to complete it."
+  short_description: "Complete, verify, and document the project's next task"
+  default_prompt: "Use $next-task-flow to complete the project's next task and document its result."
