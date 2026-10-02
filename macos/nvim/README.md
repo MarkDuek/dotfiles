@@ -17,6 +17,24 @@ Resume the last session with `Space fr`.
 Blink provides completion: `Ctrl-N/P` select, `Ctrl-Y` accepts, and `Ctrl-E`
 dismisses. `Ctrl-K` toggles signature help in insert mode.
 
+Python uses basedpyright for types/navigation and Ruff for linting/formatting.
+`gd` goes to definitions, `K` shows hover, `grn` renames, and `gra` shows code
+actions. `gld` formats; `Space oi` organizes imports. Neither runs on save.
+The interpreter is the project's `.venv`, an active virtual environment, or
+uv's Python 3.13, in that order. Restart the LSP after creating a `.venv`.
+
+Install Python tools (with `~/.local/bin` on `PATH`):
+
+```sh
+brew install uv
+uv python install 3.13
+uv tool install --python 3.13 basedpyright
+uv tool install --python 3.13 ruff
+```
+
+In an existing uv project, run `uv sync` to create its `.venv`, and use `uv run`
+to run Python commands.
+
 Link to `~/.config/nvim` from the repository root:
 
 ```sh
