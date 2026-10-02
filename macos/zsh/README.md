@@ -9,6 +9,8 @@ autosuggestions. Customize the prompt with `p10k configure`.
 fzf provides history search (`Ctrl-R`), file selection (`Ctrl-T`), and directory
 navigation (`Option-C`), using fd for searching and bat for file previews.
 
+The `y` helper opens Yazi and changes to its final directory when quitting with `q`.
+
 ## Linking
 
 Link to `~/.zshrc` from the repository root:

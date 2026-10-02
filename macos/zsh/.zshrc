@@ -66,6 +66,22 @@ if (( $+commands[fzf] )); then
     eval "$(fzf --zsh)"
 fi
 
+# Yazi: return to the selected directory when quitting with q.
+if (( $+commands[yazi] )); then
+    function y() {
+        local tmp cwd exit_code
+        tmp="$(mktemp -t "yazi-cwd.XXXXXX")" || return
+        command yazi "$@" --cwd-file="$tmp"
+        exit_code=$?
+        IFS= read -r -d '' cwd < "$tmp"
+        if (( exit_code == 0 )) && [[ -d "$cwd" && "$cwd" != "$PWD" ]]; then
+            builtin cd -- "$cwd"
+        fi
+        command rm -f -- "$tmp"
+        return "$exit_code"
+    }
+fi
+
 # Load syntax highlighting after other widgets and keybindings.
 if (( $+functions[zinit] )); then
     zinit light zsh-users/zsh-syntax-highlighting
