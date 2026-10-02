@@ -14,6 +14,9 @@ Harpoon marks files (`Space a`), opens its menu (`Ctrl-E`), and cycles marks
 Yazi opens at the current file (`Space e`) or working directory (`Space E`).
 Resume the last session with `Space fr`.
 
+Blink provides completion: `Ctrl-N/P` select, `Ctrl-Y` accepts, and `Ctrl-E`
+dismisses. `Ctrl-K` toggles signature help in insert mode.
+
 Link to `~/.config/nvim` from the repository root:
 
 ```sh
