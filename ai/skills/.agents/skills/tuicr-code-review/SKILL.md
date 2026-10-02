@@ -9,6 +9,9 @@ Use this skill when the user has already reviewed local changes with `tuicr` and
 
 ## Workflow
 
+Confirm that `tuicr` is available before querying sessions. If it is missing,
+report the prerequisite and stop; do not install it or launch a review tool.
+
 1. Find the relevant tuicr review session:
 
    ```bash

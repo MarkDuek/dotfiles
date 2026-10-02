@@ -1,4 +1,4 @@
 interface:
   display_name: "TUICR Code Review"
-  short_description: "A code review skill that uses TUICR terminal tool to review comments in code files."
-  default_prompt: "Use $tuicr-code-review to review the code and provide comments."
+  short_description: "Address comments from an existing tuicr review session"
+  default_prompt: "Use $tuicr-code-review to address comments in the existing review session."
