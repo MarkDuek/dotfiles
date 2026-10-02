@@ -5,6 +5,9 @@ keybindings, and diagnostic toggles. Leader is `Space`; local leader is `\`.
 
 Plugins are managed with lazy.nvim; the theme is Catppuccin Mocha.
 
+Telescope provides file search (`Ctrl-P`) and live grep (`Ctrl-F`), using fd and
+ripgrep.
+
 Link to `~/.config/nvim` from the repository root:
 
 ```sh
