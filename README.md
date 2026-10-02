@@ -1,6 +1,6 @@
 # dotfiles
 
-Personal dotfiles managed with Git and GNU Stow.
+Mark's dotfiles.
 
 ## Layout
 
