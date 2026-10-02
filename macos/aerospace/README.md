@@ -4,6 +4,8 @@ Automatic window tiling, workspaces 1–9, and 8-pixel gaps. Workspaces group ap
 windows; they are separate from macOS Spaces and tmux sessions. Launch-at-login
 is disabled. Other settings use AeroSpace defaults.
 
+Starts JankyBorders on launch; install and link the [borders package](../borders/README.md).
+
 Use AeroSpace workspaces on a single macOS desktop per monitor. Native macOS
 fullscreen creates a separate Space; AeroSpace fullscreen stays in the workspace.
 

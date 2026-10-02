@@ -1,0 +1,8 @@
+#!/bin/sh
+
+exec borders \
+    style=round \
+    width=3.0 \
+    hidpi=on \
+    active_color=0xffb4befe \
+    inactive_color=0xff45475a
