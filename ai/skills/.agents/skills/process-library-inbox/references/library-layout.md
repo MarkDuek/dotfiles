@@ -2,10 +2,23 @@
 
 ## Live Sources
 
-- Notes repository: `/home/mark/Resources/mark-notes/repo`
+- Notes repository: use the location supplied by the user. Otherwise check
+  `~/03-Resources/notes/mark-notes` on macOS and `~/Resources/mark-notes/repo` on
+  Linux. Expand `~` to the current user's home directory. Confirm that the
+  selected root contains `03-resources/library/kb.yaml`; if multiple roots are
+  valid or none is found, ask which repository to use.
 - Repository library: `03-resources/library`
-- Drive root: `/home/mark/gdrive/03. Resources/Library`
+- Drive root: read `library_root` from the selected repository's live `kb.yaml`.
+  Resolve the path for the current machine and verify that it exists. If the
+  configured path is unavailable or belongs to another machine, stop and ask
+  for the current library root. Do not invent a mount path, create a replacement
+  library, or edit `kb.yaml` as part of ingestion without explicit approval.
 - Drive inbox: `00-inbox`
+
+All repository paths below are relative to the confirmed notes root, not the
+working directory or the directory containing this skill. Drive paths are
+relative to the confirmed Drive root. Do not proceed until live configuration
+and filesystem paths agree.
 
 Read before every run:
 
