@@ -1,0 +1,17 @@
+[mgr]
+ratio = [ 2, 4, 3 ]
+mouse_events = [ "click", "scroll" ]
+
+[opener]
+edit = [
+    { run = '${EDITOR:-vi} %s', desc = "$EDITOR", block = true, for = "macos" },
+]
+open = [
+    { run = 'open %s', desc = "Open", for = "macos" },
+]
+reveal = [
+    { run = 'open -R %s1', desc = "Reveal in Finder", for = "macos" },
+]
+play = [
+    { run = 'open %s', desc = "Play", for = "macos" },
+]
