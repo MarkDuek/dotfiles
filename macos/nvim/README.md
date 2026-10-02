@@ -8,6 +8,9 @@ Plugins are managed with lazy.nvim; the theme is Catppuccin Mocha.
 Telescope provides file search (`Ctrl-P`) and live grep (`Ctrl-F`), using fd and
 ripgrep.
 
+Harpoon marks files (`Space a`), opens its menu (`Ctrl-E`), and cycles marks
+(`Space hp` / `Space hn`). `Ctrl-H/J/K/L` jump to marks 1–4.
+
 Link to `~/.config/nvim` from the repository root:
 
 ```sh
