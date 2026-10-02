@@ -49,6 +49,23 @@ if (( $+commands[nvim] )); then
     export EDITOR="nvim"
 fi
 
+# fzf
+if (( $+commands[fzf] )); then
+    if (( $+commands[fd] )); then
+        export FZF_DEFAULT_COMMAND="fd --hidden --exclude .git --exclude node_modules --exclude target --exclude gdrive ."
+        export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
+        export FZF_ALT_C_COMMAND="fd --hidden --type d --exclude .git --exclude node_modules --exclude target --exclude gdrive ."
+    fi
+
+    export FZF_CTRL_T_OPTS="--height 80% --bind 'ctrl-/:change-preview-window(down|hidden|)'"
+    if (( $+commands[bat] )); then
+        export FZF_CTRL_T_OPTS="$FZF_CTRL_T_OPTS
+            --preview 'if test -d {}; then CLICOLOR_FORCE=1 /bin/ls -lahG -- {}; else bat --style=numbers --color=always --paging=never -- {}; fi'"
+    fi
+
+    eval "$(fzf --zsh)"
+fi
+
 # Load syntax highlighting after other widgets and keybindings.
 if (( $+functions[zinit] )); then
     zinit light zsh-users/zsh-syntax-highlighting
