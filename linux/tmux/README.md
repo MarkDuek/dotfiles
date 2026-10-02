@@ -22,5 +22,5 @@ tmux
 From the repo root:
 
 ```sh
-stow --target="$HOME" tmux
+stow --dir=linux --target="$HOME" tmux
 ```

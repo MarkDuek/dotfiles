@@ -23,5 +23,5 @@ sudo pacman -S --needed ueberzugpp chafa poppler imagemagick
 From the repo root:
 
 ```sh
-stow --target="$HOME" yazi
+stow --dir=linux --target="$HOME" yazi
 ```

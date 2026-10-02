@@ -64,7 +64,7 @@ Useful default bindings from `fzf --zsh`:
 From the repo root:
 
 ```sh
-stow --target="$HOME" zsh
+stow --dir=linux --target="$HOME" zsh
 ```
 
-That links `zsh/.zshrc` to `~/.zshrc`.
+That links `linux/zsh/.zshrc` to `~/.zshrc`.

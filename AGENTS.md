@@ -1,32 +1,28 @@
 ## Layout
 
-Each top-level directory is a Stow package. For example:
+Stow packages live in `linux/`, `macos/`, and `ai/`:
 
 ```text
-nvim/
-  .config/
-    nvim/
-zsh/
-  .zshrc
+linux/nvim/.config/nvim/
+macos/nvim/.config/nvim/
+ai/skills/.agents/skills/
 ```
 
-## Packages
-
-| Package | Docs | Target |
-| --- | --- | --- |
-| `nvim` | [nvim/README.md](nvim/README.md) | `~/.config/nvim` |
-| `zsh` | [zsh/README.md](zsh/README.md) | `~/.zshrc` |
+Keep platform-specific configurations separate. Skills in `ai/skills/` are
+shared by Codex and OpenCode on both platforms. Package READMEs describe
+dependencies and usage; keep them concise.
 
 ## Install
 
 From this repo:
 
 ```sh
-stow nvim
-stow zsh
+stow --dir=linux --target="$HOME" nvim
+stow --dir=macos --target="$HOME" nvim
+stow --dir=ai --target="$HOME" skills
 ```
 
-That links `nvim/.config/nvim` to `~/.config/nvim`.
-It also links `zsh/.zshrc` to `~/.zshrc`.
+Choose one platform for each tool. Inspect existing targets before linking;
+preserve real files and unrelated symlinks. Use Stow simulation before applying.
 
-If a real file or directory already exists at the target path, move it out of the way first or import it into this repo before running `stow`.
+Keep commits focused on one change and preserve unrelated user work.

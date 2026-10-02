@@ -4,45 +4,35 @@ Personal dotfiles managed with Git and GNU Stow.
 
 ## Layout
 
-Each top-level directory is a Stow package. For example:
+Packages are grouped by platform; AI skills are shared:
 
 ```text
-nvim/
-  .config/
-    nvim/
-zsh/
-  .zshrc
+linux/      # nvim, tmux, yazi, zsh
+macos/      # aerospace, borders, ghostty, nvim, tmux, yazi, zsh
+ai/
+  skills/
+    .agents/skills/
 ```
-
-## Packages
-
-| Package | Docs | Target |
-| --- | --- | --- |
-| `nvim` | [nvim/README.md](nvim/README.md) | `~/.config/nvim` |
-| `tmux` | [tmux/README.md](tmux/README.md) | `~/.tmux.conf` |
-| `yazi` | [yazi/README.md](yazi/README.md) | `~/.config/yazi/yazi.toml` |
-| `zsh` | [zsh/README.md](zsh/README.md) | `~/.zshrc` |
-| `codex` | - | `~/.codex/skills/process-library-inbox` |
 
 ## Install
 
-From this repository directory, use an explicit target. The Git repository is
-nested under `Projects/Dotfiles`, so Stow's default target would not be your
-home directory.
+Run from the repository root with an explicit home target. Select packages from
+one platform; do not link Linux and macOS versions of the same tool together.
 
 ```sh
-stow --target="$HOME" nvim
-stow --target="$HOME" tmux
-stow --target="$HOME" yazi
-stow --target="$HOME" zsh
-stow --target="$HOME" codex
+# Linux
+stow --dir=linux --target="$HOME" nvim tmux yazi zsh
+
+# macOS
+stow --dir=macos --target="$HOME" nvim tmux yazi zsh aerospace borders ghostty
+
+# Shared Codex and OpenCode skills
+stow --dir=ai --target="$HOME" skills
 ```
 
-That links `nvim/.config/nvim` to `~/.config/nvim`.
-It links `tmux/.tmux.conf` to `~/.tmux.conf`.
-It links `yazi/.config/yazi/yazi.toml` to `~/.config/yazi/yazi.toml`.
-It also links `zsh/.zshrc` to `~/.zshrc`.
+Each package has its own README with dependencies and usage. Shared skills are
+documented in [ai/skills/README.md](ai/skills/README.md).
 
-If a real file or directory already exists at the target path, import it into
-this repo before running `stow`. After it matches the package, use
-`stow --target="$HOME" --restow <package>` to replace it with Stow links.
+Before linking, back up conflicting real files; never use `--adopt` blindly.
+For older Linux installs, inspect and remove only symlinks pointing at the old
+top-level packages, then run the Linux Stow command above.
