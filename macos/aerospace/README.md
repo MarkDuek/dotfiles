@@ -23,6 +23,7 @@ is enabled, including in Ghostty. Option-C remains unbound for fzf.
 | Shortcut | Action |
 | --- | --- |
 | Option-H/J/K/L | Focus left/down/up/right |
+| Option-P | Toggle current/previous focused window (can cross workspaces) |
 | Option-Shift-H/J/K/L | Move the window left/down/up/right |
 | Option-1–9 | Switch workspace |
 | Option-Shift-1–9 | Send window to workspace, without following |
