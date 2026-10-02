@@ -8,7 +8,7 @@ Packages are grouped by platform; AI skills are shared:
 
 ```text
 linux/      # nvim, tmux, yazi, zsh
-macos/      # aerospace, borders, ghostty, nvim, tmux, yazi, zsh
+macos/      # aerospace, borders, doom, ghostty, nvim, tmux, yazi, zsh
 ai/
   skills/
     .agents/skills/
@@ -25,6 +25,9 @@ stow --dir=linux --target="$HOME" nvim tmux yazi zsh
 
 # macOS
 stow --dir=macos --target="$HOME" nvim tmux yazi zsh aerospace borders ghostty
+
+# Minimal Doom Emacs (see macos/doom/README.md for installation)
+stow --dir=macos --target="$HOME" doom
 
 # Shared Codex and OpenCode skills
 stow --dir=ai --target="$HOME" skills
