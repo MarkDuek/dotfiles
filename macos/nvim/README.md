@@ -11,6 +11,9 @@ ripgrep.
 Harpoon marks files (`Space a`), opens its menu (`Ctrl-E`), and cycles marks
 (`Space hp` / `Space hn`). `Ctrl-H/J/K/L` jump to marks 1–4.
 
+Yazi opens at the current file (`Space e`) or working directory (`Space E`).
+Resume the last session with `Space fr`.
+
 Link to `~/.config/nvim` from the repository root:
 
 ```sh
