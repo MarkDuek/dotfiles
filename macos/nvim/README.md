@@ -5,6 +5,8 @@ keybindings, and diagnostic toggles. Leader is `Space`; local leader is `\`.
 
 Plugins are managed with lazy.nvim; the theme is Catppuccin Mocha.
 
+Editor and floating-window backgrounds are transparent; opacity comes from the terminal.
+
 Telescope provides file search (`Ctrl-P`) and live grep (`Ctrl-F`), using fd and
 ripgrep.
 
