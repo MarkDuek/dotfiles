@@ -14,10 +14,18 @@ Inspect any existing Emacs config first: `~/.emacs.d` takes precedence over
 `~/.config/emacs`. Run `doom sync` after changing modules or packages.
 
 Org files live in `~/03-Resources/notes/mark-notes/org/`. Agenda scans `.org`
-files directly inside inbox, projects, and areas; resources and archive are
+files recursively inside inbox, projects, and areas; resources and archive are
 excluded. See `org/index.org` in the notes repo for the workflow.
 
 - `SPC n a`: agenda (`a` for the week, `t` for all tasks).
+- The `a` view shows unfinished past deadlines/schedules first, the week on
+  assigned dates only, then unfinished deadlines/schedules after the displayed
+  week through 30 days from today.
+- Scheduled intervals use `SCHEDULED: <start>--<end>` (no spaces around `--`),
+  appear every day in the interval, and become overdue only after the end date.
+  An explicit `DEADLINE`, if present, determines when a task is overdue.
+- All agenda views share theme-based colors for category, planning dates/labels,
+  time, breadcrumbs and progress markers; Org's status and tag faces are preserved.
 - `SPC X`: capture (`t` task, `n` note, `p` project).
 - `SPC n i`: inbox.
 - `C-c C-c`: finish capture; `C-c C-k`: cancel.
