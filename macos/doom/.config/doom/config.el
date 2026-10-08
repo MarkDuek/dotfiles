@@ -39,3 +39,10 @@
 (map! :leader
       :desc "Org inbox" "n i"
       (cmd! (find-file (expand-file-name "00-inbox/inbox.org" org-directory))))
+
+(setq catppuccin-flavor 'latte)
+(setq doom-theme 'catppuccin)
+
+(add-to-list 'default-frame-alist '(alpha-background . 92))
+(when (display-graphic-p)
+  (set-frame-parameter nil 'alpha-background 92))

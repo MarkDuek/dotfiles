@@ -1,11 +1,15 @@
 ;;; init.el -*- lexical-binding: t; -*-
 
-;; Only Vim editing, Org, and Doom's standard keybindings.
-(doom! :editor
-       (evil +everywhere)
+(doom!
+ :ui
+ doom
+ doom-dashboard
 
-       :lang
-       org
+ :editor
+ (evil +everywhere)
 
-       :config
-       (default +bindings))
+ :lang
+ org
+
+ :config
+ (default +bindings))
