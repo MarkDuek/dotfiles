@@ -4,3 +4,4 @@
 (disable-packages! htmlize ox-clip toc-org org-cliplink ob-async)
 
 (package! catppuccin-theme)
+(package! org-roam-ui)

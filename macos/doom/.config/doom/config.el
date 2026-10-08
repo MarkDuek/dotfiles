@@ -15,6 +15,9 @@
            :unnarrowed t)))
   (make-directory (expand-file-name "00-inbox/nodes" org-roam-directory) t))
 
+(after! org-roam-ui
+  (setq httpd-host "127.0.0.1"))
+
 (setq citar-bibliography
       (list (expand-file-name "references.bib" org-directory)))
 

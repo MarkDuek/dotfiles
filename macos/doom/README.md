@@ -38,6 +38,9 @@ excluded. See `org/index.org` in the notes repo for the workflow.
 - `SPC n r f` / `SPC n r i`: find/link existing Org-roam nodes.
 - New regular Org-roam notes go into `org/00-inbox/nodes/`; existing notes
   remain where they are.
+- `M-x org-roam-ui-open`: open the interactive graph at
+  `http://127.0.0.1:35901/`. It starts on demand, requires no Graphviz, and
+  listens only on localhost. `M-x org-roam-ui-mode` toggles the server off/on.
 - `M-x org-cite-insert`: insert a citation; `M-x citar-open-files`: open an
   attached PDF using the bibliography's `file` field.
 - `C-c C-c`: finish capture; `C-c C-k`: cancel.
