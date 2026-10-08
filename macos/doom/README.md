@@ -36,6 +36,8 @@ excluded. See `org/index.org` in the notes repo for the workflow.
   Org-roam literature note in `org/03-resources/references/`. Notes are created
   on demand, not whenever the bibliography updates.
 - `SPC n r f` / `SPC n r i`: find/link existing Org-roam nodes.
+- New regular Org-roam notes go into `org/00-inbox/nodes/`; existing notes
+  remain where they are.
 - `M-x org-cite-insert`: insert a citation; `M-x citar-open-files`: open an
   attached PDF using the bibliography's `file` field.
 - `C-c C-c`: finish capture; `C-c C-k`: cancel.

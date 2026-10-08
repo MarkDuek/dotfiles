@@ -7,6 +7,14 @@
 
 (setq org-roam-directory org-directory)
 
+(after! org-roam
+  (setq org-roam-capture-templates
+        '(("d" "default" plain "%?"
+           :target (file+head "00-inbox/nodes/%<%Y%m%d%H%M%S>-${slug}.org"
+                              "#+title: ${title}\n")
+           :unnarrowed t)))
+  (make-directory (expand-file-name "00-inbox/nodes" org-roam-directory) t))
+
 (setq citar-bibliography
       (list (expand-file-name "references.bib" org-directory)))
 
