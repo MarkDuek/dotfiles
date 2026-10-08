@@ -5,6 +5,33 @@
       org-directory (expand-file-name "~/03-Resources/notes/mark-notes/org/")
       default-directory org-directory)
 
+(defun +org-capture-project-log-target ()
+  (set-buffer (org-capture-get :original-buffer))
+  (unless (and (derived-mode-p 'org-mode) buffer-file-name)
+    (user-error "Open the project's Org file before capturing a log entry"))
+  (org-capture-put-target-region-and-position)
+  (widen)
+  (goto-char
+   (or (save-excursion
+         (unless (org-before-first-heading-p)
+           (org-back-to-heading t)
+           (while (and (not (member "LOG" (org-get-tags nil t)))
+                       (org-up-heading-safe)))
+           (when (member "LOG" (org-get-tags nil t)) (point))))
+       (let ((logs (delq nil
+                         (org-map-entries
+                          (lambda ()
+                            ;; Ignore inherited tags on individual log entries.
+                            (when (member "LOG" (org-get-tags nil t))
+                              (cons (format "%s (line %d)"
+                                            (org-get-heading t t t t)
+                                            (line-number-at-pos))
+                                    (point))))))))
+         (cond ((null logs)
+                (user-error "Add a :LOG: tag to a log section in this file first"))
+               ((= (length logs) 1) (cdar logs))
+               (t (cdr (assoc (completing-read "Log section: " logs nil t) logs))))))))
+
 (defun +org-agenda-scheduled-timestamp ()
   (save-excursion
     (org-back-to-heading t)
@@ -184,10 +211,10 @@
            "* %?\n%U\n"
            :empty-lines 1)
 
-          ("p" "Project" entry
-           (file+headline ,(expand-file-name "01-projects/projects.org" org-directory)
-                          "Projects")
-           "* %^{Project name}\n** TODO %?\n" :empty-lines 1))))
+          ("l" "Project log" entry
+           (function +org-capture-project-log-target)
+           "* %U %^{Entry title}\n%?\n"
+           :empty-lines 1))))
 
 (after! org
   (add-hook 'org-agenda-finalize-hook #'+org-agenda-style-view 'append))

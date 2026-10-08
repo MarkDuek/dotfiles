@@ -26,7 +26,11 @@ excluded. See `org/index.org` in the notes repo for the workflow.
   An explicit `DEADLINE`, if present, determines when a task is overdue.
 - All agenda views share theme-based colors for category, planning dates/labels,
   time, breadcrumbs and progress markers; Org's status and tag faces are preserved.
-- `SPC X`: capture (`t` task, `n` note, `p` project).
+- `SPC X`: capture (`t` task, `n` note, `l` project log).
+- `SPC X l`: project log in the current Org file. Tag any log section `:LOG:`;
+  its name is unrestricted, and a file can have several. Capture uses the
+  containing log or the only log automatically; otherwise it asks which log.
+  Entry date/time is automatic, then enter a title and write the body.
 - `SPC n i`: inbox.
 - `C-c C-c`: finish capture; `C-c C-k`: cancel.
 - `C-c C-t`: change task state; `C-c C-s` / `C-c C-d`: schedule / deadline.
