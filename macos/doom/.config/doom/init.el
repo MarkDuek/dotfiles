@@ -11,6 +11,9 @@
  :editor
  (evil +everywhere)
 
+ :tools
+ biblio
+
  :lang
  (org +roam)
 

@@ -32,6 +32,12 @@ excluded. See `org/index.org` in the notes repo for the workflow.
   containing log or the only log automatically; otherwise it asks which log.
   Entry date/time is automatic, then enter a title and write the body.
 - `SPC n i`: inbox.
+- `SPC n b`: select any entry from `org/references.bib` and create/open its
+  Org-roam literature note in `org/03-resources/references/`. Notes are created
+  on demand, not whenever the bibliography updates.
+- `SPC n r f` / `SPC n r i`: find/link existing Org-roam nodes.
+- `M-x org-cite-insert`: insert a citation; `M-x citar-open-files`: open an
+  attached PDF using the bibliography's `file` field.
 - `C-c C-c`: finish capture; `C-c C-k`: cancel.
 - `C-c C-t`: change task state; `C-c C-s` / `C-c C-d`: schedule / deadline.
 - `C-c C-w`: refile; `C-c C-x C-a`: archive a subtree.

@@ -7,6 +7,13 @@
 
 (setq org-roam-directory org-directory)
 
+(setq citar-bibliography
+      (list (expand-file-name "references.bib" org-directory)))
+
+(after! citar-org-roam
+  (setq citar-org-roam-subdir "03-resources/references")
+  (make-directory (expand-file-name citar-org-roam-subdir org-roam-directory) t))
+
 (setq completion-ignore-case t)
 
 (after! orderless
