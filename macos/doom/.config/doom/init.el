@@ -1,6 +1,9 @@
 ;;; init.el -*- lexical-binding: t; -*-
 
 (doom!
+ :completion
+ vertico
+
  :ui
  doom
  doom-dashboard
@@ -9,7 +12,7 @@
  (evil +everywhere)
 
  :lang
- org
+ (org +roam)
 
  :config
  (default +bindings))

@@ -5,6 +5,14 @@
       org-directory (expand-file-name "~/03-Resources/notes/mark-notes/org/")
       default-directory org-directory)
 
+(setq org-roam-directory org-directory)
+
+(setq completion-ignore-case t)
+
+(after! orderless
+  (setf (alist-get 'org-roam-node completion-category-overrides)
+        '((styles flex))))
+
 (defun +org-capture-project-log-target ()
   (set-buffer (org-capture-get :original-buffer))
   (unless (and (derived-mode-p 'org-mode) buffer-file-name)
