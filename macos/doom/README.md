@@ -47,3 +47,28 @@ excluded. See `org/index.org` in the notes repo for the workflow.
 - `C-c C-t`: change task state; `C-c C-s` / `C-c C-d`: schedule / deadline.
 - `C-c C-w`: refile; `C-c C-x C-a`: archive a subtree.
 - `:w` / `:q`: save / close buffer; `C-x C-c`: quit Emacs.
+
+## Archives
+
+Set a project-specific destination with a file header, relative to its directory:
+
+```org
+#+ARCHIVE: ../../04-archive/anomaly-detection/anomaly-detection-archive.org::
+```
+
+Create the destination folder first. `C-c C-x C-a` moves the selected heading
+and its children; Org creates the archive file on first use and records source
+context. Parent headings are recreated or reused by their full outline path
+(e.g. `Tasks / Kernel PCA`); only their titles are copied, not bodies or IDs.
+Existing archived items are not reorganized. Nothing is archived automatically.
+Without a destination header, Org
+uses a sibling `<filename>.org_archive` file rather than a unified archive.
+
+Files ending in `-archive.org` are excluded from Org-roam; completed project
+files keep their nodes even under `04-archive/`. To retire an entire project,
+move its file there without changing its ID and update its header to the local
+`#+ARCHIVE: anomaly-detection-archive.org::`. Do not overwrite its task-history
+file. Reload the config to refresh agenda files, then run `SPC n r s` to refresh
+Roam. The agenda does not scan `04-archive/`.
+
+Check native archive routing with `emacs --batch -Q -l macos/doom/test-archive.el`.

@@ -8,6 +8,7 @@
 (setq org-roam-directory org-directory)
 
 (after! org-roam
+  (add-to-list 'org-roam-file-exclude-regexp "-archive\\.org\\'")
   (setq org-roam-capture-templates
         '(("d" "default" plain "%?"
            :target (file+head "00-inbox/nodes/%<%Y%m%d%H%M%S>-${slug}.org"
@@ -57,6 +58,37 @@
                 (user-error "Add a :LOG: tag to a log section in this file first"))
                ((= (length logs) 1) (cdar logs))
                (t (cdr (assoc (completing-read "Log section: " logs nil t) logs))))))))
+
+(defun +org-archive-preserve-hierarchy (fn &rest args)
+  ;; Bulk operations call this function again for each individual subtree.
+  (if (or (member (car args) '((4) (16)))
+          (and (org-region-active-p) org-loop-over-headlines-in-active-region))
+      (apply fn args)
+    (let ((path (org-get-outline-path)))
+      (if (null path)
+          (apply fn args)
+        (require 'org-datetree)
+        (let ((org-archive-finalize-hook
+               (cons
+                (lambda ()
+                  (let ((parents (append (org-get-outline-path) path))
+                        (tree (org-copy-subtree 1 nil t)))
+                    ;; A placement error must not remove the source item.
+                    (atomic-change-group
+                      (org-back-to-heading t)
+                      (delete-region (point) (save-excursion (org-end-of-subtree t t)))
+                      (org-datetree-find-create-hierarchy
+                       (mapcar (lambda (title) (list title #'equal)) parents))
+                      (let ((level (org-get-valid-level (org-current-level) 1)))
+                        (if org-archive-reversed-order
+                            (outline-next-heading)
+                          (org-end-of-subtree t t))
+                        (org-paste-subtree level tree)))))
+                org-archive-finalize-hook)))
+          (apply fn args))))))
+
+(after! org-archive
+  (advice-add 'org-archive-subtree :around #'+org-archive-preserve-hierarchy))
 
 (defun +org-agenda-scheduled-timestamp ()
   (save-excursion
@@ -221,10 +253,7 @@
         org-refile-use-outline-path 'file
         org-outline-path-complete-in-steps nil
 
-        org-archive-location
-        (concat
-         (expand-file-name "04-archive/archive.org" org-directory)
-         "::* Archived")
+        org-archive-location "%s_archive::"
 
         org-capture-templates
         `(("t" "Task" entry
