@@ -8,6 +8,7 @@ description: Create focused Git commits using Conventional Commits. Use when ask
 ## Workflow
 
 1. Inspect Git status, staged changes, and unstaged changes.
+   If there are unrelated changes, list them and ask whether they should also be committed. Wait for the user's answer before staging or committing; include approved changes in separate, focused commits.
 2. Group changes into single, self-contained commits. Never mix unrelated changes.
 3. Preserve unrelated work and existing staging. If the intended scope is unclear, ask before staging or committing.
 4. Stage only the intended changes, review the staged diff, and run relevant checks.
