@@ -10,6 +10,7 @@ stow --dir=ai --target="$HOME" skills
 
 | Skill | Usage |
 | --- | --- |
+| `git-commit` | Create focused commits using Conventional Commits |
 | `next-task-flow` | Complete and document a project's next task |
 | `tuicr-code-review` | Address comments in an existing tuicr review session |
 | `process-library-inbox` | Classify and organize library resources |
