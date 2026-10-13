@@ -3,6 +3,7 @@
 
 (require 'cl-lib)
 (require 'org-agenda)
+(defvar org-roam-file-exclude-regexp nil)
 
 ;; Load the configuration without starting Doom or changing any notes.
 (defmacro after! (_feature &rest body) `(progn ,@body))

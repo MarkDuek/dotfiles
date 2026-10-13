@@ -5,6 +5,7 @@
 (require 'org)
 (require 'org-element)
 (require 'org-capture)
+(defvar org-roam-file-exclude-regexp nil)
 (defmacro after! (_feature &rest body) `(progn ,@body))
 (defmacro map! (&rest _bindings) nil)
 (load (expand-file-name ".config/doom/config.el"
