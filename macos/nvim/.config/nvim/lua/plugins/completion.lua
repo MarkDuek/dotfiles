@@ -6,7 +6,7 @@ return {
     opts = {
         keymap = {
             preset = "default",
-            ["<C-y>"] = { "select_and_accept" },
+            ["<C-Space>"] = { "select_and_accept" },
             ["<S-Tab>"] = { "snippet_backward", "fallback" },
         },
         sources = { default = { "lsp", "path", "snippets", "buffer" } },
