@@ -35,6 +35,78 @@
   (setf (alist-get 'org-roam-node completion-category-overrides)
         '((styles flex))))
 
+(defvar +org-gcal-private-directory (expand-file-name "~/.local/share/org-gcal/"))
+(defvar +org-gcal-sync-timer nil)
+
+(defun +org-gcal-load-credentials ()
+  (let* ((client (with-temp-buffer
+                   (insert-file-contents
+                    (expand-file-name "client.json" +org-gcal-private-directory))
+                   (alist-get 'installed (json-parse-buffer :object-type 'alist))))
+         (id (alist-get 'client_id client))
+         (secret (alist-get 'client_secret client)))
+    (unless (and (stringp id) (not (string-empty-p id))
+                 (stringp secret) (not (string-empty-p secret)))
+      (user-error "org-gcal needs a Google Desktop app client JSON"))
+    (setq org-gcal-client-id id
+          org-gcal-client-secret secret)))
+
+(use-package! org-gcal
+  :commands (org-gcal-fetch org-gcal-sync org-gcal-post-at-point)
+  :init
+  (progn
+    (setq oauth2-auto-plstore
+          (expand-file-name "oauth2.plist" +org-gcal-private-directory)
+          epg-pinentry-mode 'loopback
+          plstore-cache-passphrase-for-symmetric-encryption t
+          org-gcal-auto-archive nil
+          org-gcal-remove-api-cancelled-events nil
+          org-gcal-remove-events-with-cancelled-todo nil
+          org-gcal-cancelled-todo-keyword "CANCELED"
+          org-gcal-managed-newly-fetched-mode "org"
+          org-gcal-managed-update-existing-mode "org"
+          org-gcal-recurring-events-mode 'nested
+          org-gcal-fetch-file-alist
+          (mapcar
+           (lambda (calendar)
+             (cons (car calendar)
+                   (expand-file-name (concat "02-areas/calendar/" (cdr calendar) ".org")
+                                     org-directory)))
+           '(("duekmark@gmail.com" . "main")
+             ("5th0qu2i1r804q148j3g0r6gks@group.calendar.google.com" . "school")
+             ("a03fb485711a9beb77467d689b899db26fd0aae58a2eb738fffc1a226a79f0a7@group.calendar.google.com" . "work"))))
+    (when (file-readable-p (expand-file-name "client.json" +org-gcal-private-directory))
+      (+org-gcal-load-credentials))))
+
+(defun +org-gcal-background-sync ()
+  (unless (or org-gcal--sync-lock (active-minibuffer-window))
+    (condition-case nil
+        (org-gcal-sync nil t)
+      (error (message "Calendar sync failed; run M-x org-gcal-sync to investigate")))))
+
+(define-minor-mode +org-gcal-auto-sync-mode
+  "Sync linked Google Calendar events every ten minutes while Emacs is running."
+  :global t
+  (when (timerp +org-gcal-sync-timer)
+    (cancel-timer +org-gcal-sync-timer))
+  (setq +org-gcal-sync-timer nil)
+  (let ((enabled-file (expand-file-name "auto-sync-enabled" +org-gcal-private-directory)))
+    (if +org-gcal-auto-sync-mode
+        (progn
+          (require 'org-gcal)
+          (unless (file-readable-p oauth2-auto-plstore)
+            (setq +org-gcal-auto-sync-mode nil)
+            (user-error "Run org-gcal-fetch and authorize Google before enabling automatic sync"))
+          (with-temp-file enabled-file (insert "enabled\n"))
+          (setq +org-gcal-sync-timer
+                (run-at-time 600 600 #'+org-gcal-background-sync)))
+      (when (file-exists-p enabled-file)
+        (delete-file enabled-file)))))
+
+(when (and (not noninteractive)
+           (file-exists-p (expand-file-name "auto-sync-enabled" +org-gcal-private-directory)))
+  (+org-gcal-auto-sync-mode 1))
+
 (defun +org-capture-project-log-target ()
   (set-buffer (org-capture-get :original-buffer))
   (unless (and (derived-mode-p 'org-mode) buffer-file-name)

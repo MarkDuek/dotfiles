@@ -5,3 +5,4 @@
 
 (package! ef-themes)
 (package! org-roam-ui)
+(package! org-gcal)

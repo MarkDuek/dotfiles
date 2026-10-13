@@ -8,6 +8,7 @@
 ;; Load the configuration without starting Doom or changing any notes.
 (defmacro after! (_feature &rest body) `(progn ,@body))
 (defmacro map! (&rest _bindings) nil)
+(defmacro use-package! (&rest _args) nil)
 (load (expand-file-name ".config/doom/config.el"
                         (file-name-directory load-file-name)) nil t)
 

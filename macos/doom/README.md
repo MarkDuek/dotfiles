@@ -50,6 +50,40 @@ excluded. See `org/index.org` in the notes repo for the workflow.
 - `C-c C-w`: refile; `C-c C-x C-a`: archive a subtree.
 - `:w` / `:q`: save / close buffer; `C-x C-c`: quit Emacs.
 
+## Google Calendar
+
+Main, School, and Work import into `org/02-areas/calendar/{main,school,work}.org`.
+These files are included in the agenda. Imported appointments use active
+timestamps, not scheduled tasks, so they appear on their calendar dates but
+not in the overdue/upcoming task blocks. Recurring occurrences are nested.
+
+Keep the Google Desktop OAuth client JSON at `~/.local/share/org-gcal/client.json`
+with directory permissions `700` and file permissions `600`. OAuth tokens are
+encrypted with GnuPG in `~/.local/share/org-gcal/oauth2.plist`; use a nonempty
+passphrase when prompted. Emacs caches it for the session. Neither file belongs
+in Git. The calendar directory is excluded locally in the notes repo's
+`.git/info/exclude`; repeat that exclusion on other machines.
+
+1. Restart Emacs after `doom sync`, then run `M-x org-gcal-fetch` and authorize
+   your Gmail account (authorization may repeat for each calendar).
+2. In a calendar file, add a disposable heading and run
+   `M-x org-gcal-post-at-point`; select its calendar, start time, and duration.
+   Confirm it appears in Google, edit its title in Org, and test `org-gcal-sync`.
+3. Save the calendar buffers, then enable `M-x +org-gcal-auto-sync-mode`.
+   It syncs every ten minutes and remembers your choice across restarts.
+   Run the same command to disable it. Emacs must be running and awake.
+
+`org-gcal-sync` imports changes and publishes edits to linked events;
+`org-gcal-fetch` only imports and may overwrite unpublished event edits.
+New Org events require one initial `org-gcal-post-at-point`. Save fetched
+changes normally (`C-x s`) and refresh the agenda with `g r`. No automatic
+archiving or deletion is enabled; Google cancellations become `CANCELED`.
+Keep series-wide recurrence edits in Google initially. OAuth clients in
+Google's Testing mode may require reauthorization after seven days.
+
+Run the offline setup/timer check with
+`emacs --batch -Q -l macos/doom/test-gcal.el`.
+
 ## Archives
 
 Set a project-specific destination with a file header, relative to its directory:
