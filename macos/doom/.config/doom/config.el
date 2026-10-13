@@ -240,11 +240,11 @@
   (let ((type (get-text-property 0 'type entry)))
     (unless (or (and (member type '("scheduled" "past-scheduled" "deadline" "upcoming-deadline"))
                      (null (get-text-property 0 'dotime entry)))
-                ;; Org already displays ranges as daily blocks; avoid a duplicate start.
+                ;; Date ranges have daily blocks; time ranges still need their scheduled entry.
                 (and (member type '("scheduled" "past-scheduled"))
                      (org-with-point-at (get-text-property 0 'org-hd-marker entry)
-                       (eq (org-element-property :type (+org-agenda-scheduled-timestamp))
-                           'active-range))))
+                       (eq (org-element-property :range-type (+org-agenda-scheduled-timestamp))
+                           'daterange))))
       entry)))
 
 (defun +org-agenda-skip-not-overdue ()

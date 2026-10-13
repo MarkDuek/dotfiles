@@ -28,8 +28,10 @@
                           ("ON_HOLD Old deadline" "DEADLINE" ,(1- today) "")
                           ("DONE Finished schedule" "SCHEDULED" ,(1- today) "")
                           ("CANCELED Finished deadline" "DEADLINE" ,(1- today) "")
-                          ("TODO Today schedule" "SCHEDULED" ,today "")
-                          ("TODO Today deadline" "DEADLINE" ,today "")
+                           ("TODO Today schedule" "SCHEDULED" ,today "")
+                           ("TODO Today time interval" "SCHEDULED" ,today " 10:00-12:00")
+                           ("TODO Old time interval" "SCHEDULED" ,(1- today) " 10:00-12:00")
+                           ("TODO Today deadline" "DEADLINE" ,today "")
                           ("TODO Future warning" "DEADLINE" ,next-monday " -14d")
                           ("TODO Next schedule" "SCHEDULED" ,next-monday " 12:00")
                           ("DONE Finished future task" "SCHEDULED" ,next-monday "")
@@ -60,8 +62,9 @@
                           ("TODO Ends today interval" ,(- today 3) ,today)
                           ("TODO Expired interval" ,(- today 4) ,(1- today))
                           ("DONE Finished range" ,(- today 4) ,(1- today))
-                          ("TODO Next interval" ,next-monday ,(+ next-monday 2))
-                          ("TODO Overlapping interval" ,(1- monday) ,(+ next-monday 2))))
+                           ("TODO Next interval" ,next-monday ,(+ next-monday 2))
+                           ("TODO Midweek interval" ,(+ monday 2) ,(+ monday 4))
+                           ("TODO Overlapping interval" ,(1- monday) ,(+ next-monday 2))))
             (insert (format "* %s\nSCHEDULED: <%s>--<%s>\n"
                             (car item)
                             (format-time-string "%Y-%m-%d %a"
@@ -90,8 +93,19 @@
                            "Whole week interval" "Ends today interval" "Finished range"
                            "Next interval" "Overlapping interval"))
               (cl-assert (not (string-match-p name past))))
-            (dolist (name '("Today schedule" "Today deadline" "Recurring meeting"))
-              (cl-assert (string-match-p name week)))
+             (dolist (name '("Today schedule" "Today deadline" "Recurring meeting"))
+               (cl-assert (string-match-p name week)))
+             (dolist (case `(("Today time interval" ,(list today))
+                             ("Old time interval" ,(when (>= (1- today) monday) (list (1- today))))
+                             ("Midweek interval" ,(number-sequence (+ monday 2) (+ monday 4)))))
+               (save-excursion
+                 (goto-char (1+ week-start))
+                 (let (dates)
+                   (while (search-forward (car case) (1+ upcoming-start) t)
+                     (let ((date (get-text-property (match-beginning 0) 'date)))
+                       (push (if (integerp date) date
+                               (calendar-absolute-from-gregorian date)) dates)))
+                   (cl-assert (equal (nreverse dates) (cadr case))))))
             (dolist (name '("Old schedule" "Old deadline"))
               (cl-assert (= (length (split-string week (regexp-quote name)))
                             (if (>= (1- today) monday) 2 1))))
@@ -122,7 +136,7 @@
                                               (format-time-string "%Y-%m-%d %a"
                                                                   (org-time-from-absolute (+ next-monday 2)))))
                         upcoming))
-            (princ "Agenda check passed: overdue block, assigned dates, repeaters, upcoming block.\n")))
+             (princ "Agenda check passed: overdue block, assigned dates, time intervals, daily date ranges without duplicates, repeaters, upcoming block.\n")))
         (dolist (view '(week todo milestones tags search))
           (pcase view
             ('week (org-agenda nil "a"))
