@@ -226,6 +226,7 @@
         org-log-into-drawer t
 
         org-agenda-span 'week
+         org-agenda-start-with-entry-text-mode t
          org-agenda-start-on-weekday 1
          org-agenda-start-day nil
 

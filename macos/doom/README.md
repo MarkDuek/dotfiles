@@ -18,6 +18,8 @@ files recursively inside inbox, projects, and areas; resources and archive are
 excluded. See `org/index.org` in the notes repo for the workflow.
 
 - `SPC n a`: agenda (`a` for the week, `t` for all tasks).
+- Task body text and checklists are shown by default (up to five lines).
+  `g D E` toggles this display; `g r` rebuilds the current agenda.
 - The `a` view shows unfinished past deadlines/schedules first, the week on
   assigned dates only, then unfinished deadlines/schedules after the displayed
   week through 30 days from today.
