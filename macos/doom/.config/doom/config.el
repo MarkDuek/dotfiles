@@ -5,6 +5,9 @@
       org-directory (expand-file-name "~/03-Resources/notes/mark-notes/org/")
       default-directory org-directory)
 
+(add-to-list 'exec-path "/Library/TeX/texbin")
+(setenv "PATH" (concat "/Library/TeX/texbin:" (getenv "PATH")))
+
 (setq org-roam-directory org-directory)
 
 (after! org-roam
