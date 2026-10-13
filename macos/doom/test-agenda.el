@@ -69,9 +69,10 @@
                                                 (org-time-from-absolute (caddr item))))))
           (insert "* TODO No date\n"
                   "* Styled parent\n** ON_HOLD Styled task [0/2] :MILESTONE:\n"
-                  (format "SCHEDULED: <%s 12:00> DEADLINE: <%s>\n"
-                          (format-time-string "%Y-%m-%d %a" (org-time-from-absolute today))
-                          (format-time-string "%Y-%m-%d %a" (org-time-from-absolute next-monday)))))
+                   (format "SCHEDULED: <%s 12:00> DEADLINE: <%s>\n"
+                           (format-time-string "%Y-%m-%d %a" (org-time-from-absolute today))
+                           (format-time-string "%Y-%m-%d %a" (org-time-from-absolute next-monday)))
+                   "- [ ] Collect documents\n- [ ] Submit application\n"))
         (org-agenda nil "a")
         (with-current-buffer org-agenda-buffer-name
           (let* ((text (buffer-string))
@@ -129,6 +130,13 @@
             ('tags (org-tags-view nil "MILESTONE"))
             ('search (org-search-view nil "Styled task")))
           (with-current-buffer org-agenda-buffer-name
+            (cl-assert org-agenda-entry-text-mode)
+            (cl-assert
+             (cl-some (lambda (overlay)
+                        (let ((text (overlay-get overlay 'after-string)))
+                          (and (stringp text)
+                               (string-match-p (regexp-quote "[ ] Collect documents") text))))
+                      (overlays-in (point-min) (point-max))))
             (goto-char (point-min))
             (while (progn
                      (search-forward "Styled task")
