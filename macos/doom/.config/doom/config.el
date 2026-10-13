@@ -280,8 +280,7 @@
       (cmd! (find-file
              (expand-file-name "00-inbox/inbox.org" org-directory))))
 
-(setq catppuccin-flavor 'latte)
-(setq doom-theme 'catppuccin)
+(setq doom-theme 'ef-light)
 
 (add-to-list 'default-frame-alist '(alpha-background . 92))
 (when (display-graphic-p)

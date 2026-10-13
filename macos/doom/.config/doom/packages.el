@@ -3,5 +3,5 @@
 ;; No optional Org export, clipboard, TOC, or async code-execution extensions.
 (disable-packages! htmlize ox-clip toc-org org-cliplink ob-async)
 
-(package! catppuccin-theme)
+(package! ef-themes)
 (package! org-roam-ui)
